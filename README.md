@@ -5,7 +5,7 @@
 ##接入流程
 ###依赖库导入
 <br>
-眼镜试戴模块，所依赖的库文件为: topface-release.aar，需添加到Android项目中。
+人脸标注模块，所依赖的库文件为: topface-release.aar，需添加到Android项目中。
 <br>
 ###授权认证
 <br>
