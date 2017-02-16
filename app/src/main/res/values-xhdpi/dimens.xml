@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--拍照界面-->
+    <dimen name="camera_bottom_height">96dp</dimen>
+    <dimen name="camera_center_height">36dp</dimen>
+    <dimen name="camera_center_margin">60dp</dimen>
+
+    <dimen name="camera_bottom_shutter">86dp</dimen>
+    <dimen name="camera_bottom_item_margin">34dp</dimen>
+    <dimen name="camera_bottom_gallery_icon_width">42dp</dimen>
+    <dimen name="camera_bottom_multipart_icon_width">56dp</dimen>
+
+    <dimen name="camera_center_padding">6dp</dimen>
+    <dimen name="camera_focus">88dp</dimen>
+
+</resources>
