@@ -1,6 +1,6 @@
 #AndroidTopFaceSDKSample使用说明
 <br>
-[官网地址](http://www.voome.cn)
+[官网](http://www.voome.cn)
 <br>
 ##接入流程
 ###依赖库导入
@@ -11,6 +11,7 @@
 <br>
 调用com.topplusvision.topface.TopFace的init(getApplicationContext(), " client_id", " client_secret");
 说明：申请 client_id 和 client_secret 后调用此函数获得授权。不调用认证函数无法使用人脸检测功能，正确调用认证函数即可正常使用。
+<br>
 <br>
 [获取License](http://www.voome.cn/register/index.shtml)
 <br>
@@ -46,7 +47,7 @@ public static float[] dynamicDetect(byte[] nv21, int width, int height, float by
 ##68个人脸特征点二维像素坐标图
 ![](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/images/feature.jpg)
 ##开源协议
-见[LICENSE](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/LICENSE)
+[LICENSE](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/LICENSE)
 ##开发者微信群
 ![](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/images/voomeGroup.png)
 ##联系我们
