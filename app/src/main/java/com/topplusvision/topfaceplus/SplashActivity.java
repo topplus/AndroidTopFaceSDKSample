@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_splash);
         //请在下面输入正确的clientId,clientSecret，否则无法使用FaceSDK
-        TopFace.initLibrary(this, "06c4d4a40020457ba6e7f4d483248171", "w-5WrZiC4UHMblG6H8A5FSNgyJ8");
+        TopFace.initLibrary(this, "", "");
         //进入预览界面
         launchMain();
 //        launchAsync();
