@@ -43,5 +43,5 @@ public static float[] dynamicDetect(byte[] nv21, int width, int height, float by
 
 ```
 <br>
-##68个人脸特征点二维像素坐标图片
+##68个人脸特征点二维像素坐标图
 ![](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/images/feature.jpg)
