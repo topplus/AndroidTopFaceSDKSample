@@ -45,3 +45,14 @@ public static float[] dynamicDetect(byte[] nv21, int width, int height, float by
 <br>
 ##68个人脸特征点二维像素坐标图
 ![](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/images/feature.jpg)
+##开源协议
+见[LICENSE](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/LICENSE)
+##开发者微信群
+![](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/images/voomeGroup.png)
+##联系我们
+<br>
+商务合作sales@topplusvision.com
+<br>
+媒体合作pr@topplusvision.com
+<br>
+技术支持support@topplusvision.com
