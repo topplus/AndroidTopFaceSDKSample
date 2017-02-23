@@ -2,6 +2,22 @@
 <br>
 [官网](http://www.voome.cn)
 <br>
+##开发环境说明
+###使用android studio 2.0及以上版本开发，相关工具的版本情况如下：
+```Java
+compileSdkVersion 23
+buildToolsVersion "23.0.1"
+defaultConfig {
+    minSdkVersion 14
+    targetSdkVersion 23
+}
+```
+<br>
+###支持平台说明
+目前 sdk 支持的 android 系统是 android4.0 及以上，然后支持的 android 芯片平台有 armeabi-
+v7a,armeabi,x86,x86_64,arm64-v8a。
+<br>
+<br>
 ##接入流程
 ###依赖库导入
 <br>
@@ -19,6 +35,8 @@
 <br>
 在检测之前调用com.topplusvision.topface.TopFace的initWithFocus(Context context, float focus)初始化检测上下文
 <br>
+
+
 ##接口定义和使用说明
 ```Java
 /**
