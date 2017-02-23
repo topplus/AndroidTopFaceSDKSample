@@ -37,7 +37,9 @@ public static int initWithFocus(Context context,float focus) ;
  * @param height 摄像头数据高度
  * @param bytePerPix 每个像素点的 byte
  * @param rotation 摄像头数据旋转角度
- * @return长度为151的数组，第0~135位表示68个人脸特征点二维像素坐标，原点是传入图像的左上角，特征点代表意义参考示意图；第136~138位表示人脸鼻尖处在相机坐标系下的位置数据，坐标系定义：x轴向右,y轴向下,z轴向前；第139~141位表示人脸相对相机的姿态数据，单位是弧度，依次定义为：pitc俯仰角、roll翻滚角、yaw偏航角；第142位表示置信度.
+ * @return长度为151的数组，第0~135位表示68个人脸特征点二维像素坐标，原点是传入图像的左上角，特征点代表意义参考示意图；
+          第136~138位表示人脸鼻尖处在相机坐标系下的位置数据，坐标系定义：x轴向右,y轴向下,z轴向前；第139~141位表示人脸
+          相对相机的姿态数据，单位是弧度，依次定义为：pitc俯仰角、roll翻滚角、yaw偏航角；第142位表示置信度.
  */
 
 public static float[] dynamicDetect(byte[] nv21, int width, int height, float bytePerPix, int rotation);
