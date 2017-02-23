@@ -5,11 +5,13 @@
 ##开发环境说明
 ###使用android studio 2.0及以上版本开发，相关工具的版本情况如下：
 ```Java
-compileSdkVersion 23
-buildToolsVersion "23.0.1"
+compileSdkVersion 25
+buildToolsVersion "25.0.2"
 defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 23
+    targetSdkVersion 22
+    renderscriptTargetApi 18
+    renderscriptSupportModeEnabled true
 }
 ```
 <br>
