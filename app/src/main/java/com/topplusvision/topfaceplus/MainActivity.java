@@ -70,7 +70,9 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         mCameraHelper = CameraHelper.getInstance(this);
         mCameraId = mCameraHelper.getFrontCameraId();
         mCamera = mCameraHelper.openCamera(mCameraId);
-        mCameraHelper.setMinParameters(mCamera);
+        mImageRotation = mCameraHelper.getImageRotation(mCameraId);
+        mCameraHelper.setOptmlParameters(mCamera, mImageRotation);
+//        mCameraHelper.setMinParameters(mCamera);
         try {
             mCamera.setPreviewTexture(mSurfaceTexture);
         } catch (IOException e) {
@@ -79,7 +81,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         Camera.Parameters parameters = mCamera.getParameters();
         mPreviewWidth = parameters.getPreviewSize().width;
         mPreviewHeight = parameters.getPreviewSize().height;
-        mImageRotation = mCameraHelper.getImageRotation(mCameraId);
         mFlipHorital = (mCameraId == mCameraHelper.getFrontCameraId());
         mFrameBitmap = Bitmap.createBitmap(mPreviewWidth, mPreviewHeight, Bitmap.Config.ARGB_8888);
 
@@ -125,6 +126,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         decodeYUV420SPAndRotate(data);
         mCamera.addCallbackBuffer(mBuffer);
         TopFace.detectBitmap(mFrameBitmapRotate);
+
         Canvas canvas = this.mSurfaceView.getHolder().lockCanvas();
         //绘制大小
         if (canvas != null) {
@@ -132,6 +134,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
             this.mSurfaceView.getHolder().unlockCanvasAndPost(canvas);
         }
     }
+
 
     @Override
     protected void onResume() {
