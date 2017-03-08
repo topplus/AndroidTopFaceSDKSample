@@ -136,8 +136,7 @@ public class SyncAcitivty extends Activity implements SurfaceHolder.Callback,
     public void onPreviewFrame(byte[] data, Camera camera) {
         decodeYUV420SPAndRotate(data);
         mCamera.addCallbackBuffer(mBuffer);
-        float[] buffer = TopFace.dynamicDetect(data, mPreviewWidth
-                , mPreviewHeight, mBytePerPixel, 360 - mImageRotation);
+        float[] buffer = TopFace.dynamicDetect(data, mPreviewWidth, mPreviewHeight, mBytePerPixel, 360 - mImageRotation);
         if (null != buffer) {
             Canvas cans = new Canvas(this.mFrameBitmapRotate);
             int width = mFrameBitmapRotate.getWidth();
