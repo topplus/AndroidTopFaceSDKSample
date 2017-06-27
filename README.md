@@ -20,7 +20,7 @@ defaultConfig {
 目前 sdk 支持的 android 系统是 android4.0 及以上，然后支持的 android 芯片平台有 armeabi-v7a,armeabi,x86,x86_64,arm64-v8a。
 
 ## 接入流程 ##
-###依赖库导入 ###
+### 依赖库导入 ###
 
 人脸标注模块，所依赖的库文件为: [topface-release.aar](https://github.com/topplus/AndroidTopFaceSDKSample/raw/master/topface-release/topface-release.aar)，需添加到Android项目中。
 
