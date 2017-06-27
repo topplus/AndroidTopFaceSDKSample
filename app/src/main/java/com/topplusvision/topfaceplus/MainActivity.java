@@ -3,6 +3,7 @@ package com.topplusvision.topfaceplus;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -16,6 +17,9 @@ import android.support.v8.renderscript.ScriptIntrinsicYuvToRGB;
 import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.topplusvision.topface.ScriptC_openci;
@@ -25,7 +29,7 @@ import java.io.IOException;
 
 
 public class MainActivity extends Activity implements SurfaceHolder.Callback,
-        Camera.PreviewCallback {
+        Camera.PreviewCallback, View.OnClickListener {
     ScriptIntrinsicYuvToRGB y2r;
     Paint paint;
     private Camera mCamera;
@@ -49,6 +53,10 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
     private int mScreenWidth;
     private int mScreenHeight;
     private Rect mTargetRect;
+    private Paint mTextPaint;
+    //debug
+    private TextView mDebug;
+    private boolean isDebug;
 
     protected void onCreate(Bundle savedInstanceState) {
         paint = new Paint();
@@ -58,9 +66,12 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         mScreenWidth = dm.widthPixels;
         mScreenHeight = dm.heightPixels;
         //2.设置预览控件
-        mSurfaceView = new SurfaceView(this);
+        setContentView(R.layout.act_layout);
+        mSurfaceView = (SurfaceView) findViewById(R.id.sv);
         mSurfaceView.getHolder().addCallback(this);
-        setContentView(mSurfaceView);
+        mDebug = (TextView) findViewById(R.id.tv);
+        mDebug.setOnClickListener(this);
+        isDebug = false;
         //3.初始化RenderScript
         mRs = RenderScript.create(this);
         y2r = ScriptIntrinsicYuvToRGB.create(mRs, Element.U8_4(mRs));
@@ -70,9 +81,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         mCameraHelper = CameraHelper.getInstance(this);
         mCameraId = mCameraHelper.getFrontCameraId();
         mCamera = mCameraHelper.openCamera(mCameraId);
-        mImageRotation = mCameraHelper.getImageRotation(mCameraId);
-        mCameraHelper.setOptmlParameters(mCamera, mImageRotation);
 //        mCameraHelper.setMinParameters(mCamera);
+        mCameraHelper.setMediumParameters(mCamera, this);
         try {
             mCamera.setPreviewTexture(mSurfaceTexture);
         } catch (IOException e) {
@@ -81,6 +91,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         Camera.Parameters parameters = mCamera.getParameters();
         mPreviewWidth = parameters.getPreviewSize().width;
         mPreviewHeight = parameters.getPreviewSize().height;
+        mImageRotation = mCameraHelper.getImageRotation(mCameraId);
         mFlipHorital = (mCameraId == mCameraHelper.getFrontCameraId());
         mFrameBitmap = Bitmap.createBitmap(mPreviewWidth, mPreviewHeight, Bitmap.Config.ARGB_8888);
 
@@ -118,7 +129,28 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         } else if (bmpRatio < sRatio) {
             int margin = (int) (((mScreenWidth / bmpRatio) - mScreenHeight) / 2.f);
             mTargetRect = new Rect(0, -margin, mScreenWidth, mScreenHeight + margin);
+        } else {
+            mTargetRect = new Rect(0, 0, mScreenWidth, mScreenHeight);
         }
+        //初始化文字的画笔
+        mTextPaint = new Paint();
+        mTextPaint.setAntiAlias(true);
+        mTextPaint.setColor(Color.RED);
+        mTextPaint.setTextSize(60.f);
+        mTextPaint.setStrokeWidth(2.f);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tv) {
+            isDebug = !isDebug;
+            if (isDebug) {
+                mDebug.setBackgroundResource(R.drawable.shape_bg_normal);
+            } else {
+                mDebug.setBackgroundResource(R.drawable.shape_bg_pressed);
+            }
+        }
+
     }
 
     @Override
@@ -126,7 +158,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
         decodeYUV420SPAndRotate(data);
         mCamera.addCallbackBuffer(mBuffer);
         TopFace.detectBitmap(mFrameBitmapRotate);
-
         Canvas canvas = this.mSurfaceView.getHolder().lockCanvas();
         //绘制大小
         if (canvas != null) {
@@ -134,7 +165,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback,
             this.mSurfaceView.getHolder().unlockCanvasAndPost(canvas);
         }
     }
-
 
     @Override
     protected void onResume() {

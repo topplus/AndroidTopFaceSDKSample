@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.util.Log;
 import android.view.Surface;
 import android.view.WindowManager;
 
@@ -204,6 +205,27 @@ public class CameraHelper {
             Camera.Size optimalSize = getMinPreviewSize(sizes);
             parameters.setPreviewSize(optimalSize.width, optimalSize.height);
             sizes = parameters.getSupportedPictureSizes();
+            Camera.Size pictureSize = getOptimalPreviewSize(sizes, mPictureWidth, mPictureHeigth);
+            mPictureWidth = pictureSize.width;
+            mPictureHeigth = pictureSize.height;
+            parameters.setPictureSize(mPictureWidth, mPictureHeigth);
+            parameters.setPreviewFormat(ImageFormat.NV21);
+            camera.setParameters(parameters);
+        }
+    }
+
+    /**
+     * 设置一些摄像机相关的参数
+     *
+     * @param camera
+     */
+    public void setMediumParameters(Camera camera, Context context) {
+        if (camera != null) {
+            Camera.Parameters parameters;
+            parameters = camera.getParameters();
+            Camera.Size size = parameters.getPreferredPreviewSizeForVideo();
+            parameters.setPreviewSize(size.width, size.height);
+            List<Camera.Size> sizes = parameters.getSupportedPictureSizes();
             Camera.Size pictureSize = getOptimalPreviewSize(sizes, mPictureWidth, mPictureHeigth);
             mPictureWidth = pictureSize.width;
             mPictureHeigth = pictureSize.height;

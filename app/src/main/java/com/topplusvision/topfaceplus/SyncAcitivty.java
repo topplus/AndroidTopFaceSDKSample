@@ -144,7 +144,7 @@ public class SyncAcitivty extends Activity implements SurfaceHolder.Callback,
             p.setColor(0xff00ff00);
             p.setAntiAlias(true);
             p.setStyle(Paint.Style.FILL);
-            p.setStrokeWidth(2.f);
+            p.setStrokeWidth(4.f);
             for (int i = 0; i < 136; i += 2) {
                 if (mFlipHorital) {
                     cans.drawPoint(width - buffer[i], buffer[i + 1], p);
