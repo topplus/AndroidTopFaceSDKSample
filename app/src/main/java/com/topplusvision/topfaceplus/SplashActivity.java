@@ -40,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         //请在下面输入正确的clientId,clientSecret，否则无法使用FaceSDK
         TopFace.initLibrary(this, "", "");
         //进入预览界面
+
 //        launchMain();
         launchAsync();
     }
